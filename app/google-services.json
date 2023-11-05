@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "225709290248",
+    "project_id": "aristore-9cc8b",
+    "storage_bucket": "aristore-9cc8b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:225709290248:android:e2712e96e9a940bf3fb2bd",
+        "android_client_info": {
+          "package_name": "com.example.aristore"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_ikIJly2iAJkNDY0SMpE1JcZFlR_N3hg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
