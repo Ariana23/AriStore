@@ -1,6 +1,8 @@
 package com.example.aristore
 
+import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.ComponentActivity
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -19,6 +21,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
@@ -27,12 +32,14 @@ import com.google.firebase.ktx.Firebase
 fun HomeScreen(){
 // Write a message to the database
     val database = Firebase.database
-
-
     var name by remember { mutableStateOf("") }
     var titulo by remember { mutableStateOf("") }
     var descripcion by remember { mutableStateOf("") }
 
+    //INTENTE MANDAR UN EVENTO CON EL PARAMETRO NAME
+Firebase.analytics.logEvent("sign_name"){
+    param("name", name)
+}
     Column(modifier = Modifier.padding(16.dp)) {
         TextField(value = name,
             onValueChange = {newText -> name= newText},
@@ -49,6 +56,13 @@ fun HomeScreen(){
         val context = LocalContext.current
         Button(
             onClick = {
+                //ANALYTICS CUANDO PRESIONO EL BOTON, PERO NO SE SI FUNCIONA
+                val analytics = FirebaseAnalytics.getInstance(context)
+                val bundle = Bundle()
+                bundle.putString("message", "Integracion de Firebase complete")
+                analytics.logEvent("InitScreen", bundle)
+
+                //LOGICA DE BASDE DE DATOS
                       val contactsRef = database.reference.child("Contacts")
                     val contactRef = contactsRef.child(name)
                     val contact = Nota(titulo, descripcion)
@@ -67,7 +81,6 @@ fun HomeScreen(){
         ClickableText(
             text = AnnotatedString("Formar Cierre Crashlytics"),
             onClick ={
-
                 //ESTO HACE QUE MI APP SE CIERRE
                 throw RuntimeException("Error forzado desde Home")
             }
@@ -75,4 +88,3 @@ fun HomeScreen(){
     }
 }
 data class Nota (val titulo: String, val descripcion: String)
-

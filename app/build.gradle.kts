@@ -6,8 +6,6 @@ plugins {
     id("com.google.gms.google-services")
     //FIREBASE CRASHLYTICS
     id ("com.google.firebase.crashlytics")
-
-
 }
 
 android {
@@ -77,15 +75,18 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
-    //FIREBASE - IMPORTANTE: DEJAR EL BOM EN ESTA VERSION PORQUE SINO ROMPE
+    //FIREBASE - IMPORTANTE: DEJAR EL BOM EN ESTA VERSION PORQUE SINO ROMPE - 30.5.0
     implementation(platform("com.google.firebase:firebase-bom:30.5.0"))
 
-
+    // DEPENDENCIA DE CRASHLYTICS + ANALYTICS PARA QUE FUNCIONE
     implementation ("com.google.firebase:firebase-crashlytics-ktx")
-    implementation("com.google.firebase:firebase-analytics-ktx")
+    // DEPENDENCIA DE ANALYTICS
+   implementation("com.google.firebase:firebase-analytics-ktx")
+    /* implementation ("com.google.firebase:firebase-analytics:21.5.0")*/
+    // DEPENDENCIA DE AUTENTICACION
     implementation("com.google.firebase:firebase-auth-ktx:")
+    // DEPENDENCIA DE REMOTE CONFIG
     implementation ("com.google.firebase:firebase-config:21.5.0")
-
+    // DEPENDENCIA DE REALTIME DATABASE
     implementation("com.google.firebase:firebase-database:20.3.0")
-
 }
